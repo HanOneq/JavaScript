@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>JQuery with vertical navigation filter function code</title>
+
+<link href="css/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
+<link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+*{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+body{background:#f0f0f0;}
+.content{width:260px;margin:100px auto;}
+.filterinput{
+	background-color:rgba(249, 244, 244, 0);
+	border-radius:15px;
+	width:90%;
+	height:30px;
+	border:thin solid #FFF;
+	text-indent:0.5em;
+	font-weight:bold;
+	color:#FFF;
+}
+#demo-list a{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	width:100%;
+}
+</style>
+
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/jquery-accordion-menu.js" type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(document).ready(function () {
+	jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+	
+});
+
+$(function(){	
+	
+	$("#demo-list li").click(function(){
+		$("#demo-list li.active").removeClass("active")
+		$(this).addClass("active");
+	})	
+})	
+</script>
+
+</head>
+<body>
+<marquee><h1>Test site</h1></marquee>
+<div class="content">
+
+	<div id="jquery-accordion-menu" class="jquery-accordion-menu red">
+		<div class="jquery-accordion-menu-header" id="form"></div>
+		<ul id="demo-list">
+		 	<li><a href="#"><i class="fa fa-file-image-o"></i>1.Solve for the unknown </a>
+				<ul class="submenu">
+					<li><a href="equation/addition.html">Addition </a></li>
+					<li><a href="equation/substraction.html">Subtraction </a></li>
+					<li><a href="equation/Multiplication.html">Multiplication </a></li>
+					<li><a href="equation/Division.html">Division </a></li>
+				</ul>
+			</li>
+		   	<li class="active"><a href="equation/Write.htm"><i class="fa fa-file-image-o"></i>2.Write out as a mathematical expression </a></li>
+		   	<li><a href="#"><i class="fa fa-file-image-o"></i>3.Rewrite and simplify into a single fraction </a>
+				<ul class="submenu">
+					<li><a href="equation/fraction_square.htm">Rewrite the fractions with const numerator</a></li>
+					<li><a href="equation/fraction.htm">Rewrite the fractions with const denominator </a></li>
+				</ul>
+			</li>
+			<li><a href="equation/Rewrite.htm"><i class="fa fa-file-image-o"></i>4.Simply and solve the expression </a></li>
+			<li><a href="equation/multiple.htm"><i class="fa fa-file-image-o"></i>5.Multiply the expressions </a><span class="jquery-accordion-menu-label">
+				12 </span></li>
+			
+			<li><a href="equation/conditional.html"><i class="fa fa-file-image-o"></i>6.Conditional expressions</a></li>
+			
+			<li><a href="equation/distiributive.html"><i class="fa fa-file-image-o"></i>7.Distributive expressions </a></li>
+			<li><a href="equation/table.htm"><i class="fa fa-file-image-o"></i>8.Which equation matches the table? </a></li>
+		   
+		</ul>
+		<div class="jquery-accordion-menu-footer">
+			Footer
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+(function($) {
+$.expr[":"].Contains = function(a, i, m) {
+	return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+};
+function filterList(header, list) {
+	var form = $("<form>").attr({
+		"class":"filterform",
+		action:"#"
+	}), input = $("<input>").attr({
+		"class":"filterinput",
+		type:"text"
+	});
+	$(form).append(input).appendTo(header);
+	$(input).change(function() {
+		var filter = $(this).val();
+		if (filter) {
+			$matches = $(list).find("a:Contains(" + filter + ")").parent();
+			$("li", list).not($matches).slideUp();
+			$matches.slideDown();
+		} else {
+			$(list).find("li").slideDown();
+		}
+		return false;
+	}).keyup(function() {
+		$(this).change();
+	});
+}
+$(function() {
+	filterList($("#form"), $("#demo-list"));
+});
+})(jQuery);	
+</script>
+
+
+</body>
+</html>

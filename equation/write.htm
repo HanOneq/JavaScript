@@ -1,0 +1,447 @@
+<html>
+<style type="text/css">
+                background: url(../imgs/background1.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+</style>
+<head>
+    
+</head>
+
+<body>
+    <div style="width: 1200px; height: 500px; margin: auto;margin-top:80px">
+        <div>
+            <label style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Operating numbers:</label>
+            <input type="text" name="randomDigits" id="randomDigits" required="" autofocus="" value="4" style="border-bottom: rgba(98, 115, 95, 0) solid;text-align: center;background: rgba(0, 128, 0, 0.81);color: white;
+        }">
+            <input type="button" value="GEN" style="border-radius: 30px;" onclick="randomDigitsOnclick()">
+            <br>
+            <br>
+        </div>
+
+        <div id="examPane" style="display: none;">
+            <div style="float: left; width: 40%;">
+                <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+                    <label style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Equation</label>&nbsp; &nbsp;
+
+                    <label id="subject_number1_p" style="display: none;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+                    <label id="thing1" style="display: none;text-shadow: 2px 2px 14px red;"></label>
+                    <label id="subject_number2_p" style="display: none;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+                    <label id="thing2" style="display: none;text-shadow: 2px 2px 14px red;"></label>
+                    <label id="subject_number3_p" style="display: none;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+                    <label id="thing3" style="display: none;text-shadow: 2px 2px 14px red;"></label>
+                    <label id="subject_number4_p" style="display: none;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+                </p>
+                <br>
+                <button style="border-radius: 30px;" onclick="startAnswer();">Start Answer</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="examPane1" style="display: none;">
+        <p style="margin-left: 238px;margin-top: -259px;"><font style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Step1:</font><font style="font-weight: bold;color: #0055BB; font-size: 17px;">First Identify the operation needed!(Write out the words)</font>
+        </p><br>
+            <br>
+        <input class="step1" id="valuex" style="margin-top: -35px;margin-left: 450px;border-bottom: rgba(98, 115, 95, 0) solid;text-align: center;background: rgba(0, 128, 0, 0.81);color: white;" type="text" value="">
+    </div>
+    <div id="examPane3" style="margin-top: 261; display: none;">
+        <p style="margin-left: 238px;margin-top: -259px;"><font style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Step2:</font><font style="font-weight: bold;color: #0055BB; font-size: 17px;">Write out the sign for the operation.  (Example, +, -, x, /)</font>
+        </p>
+        <br>
+        <br>
+        <input class="step2" id="valuex1" style="margin-top: -35px;margin-left: 450px;border-bottom: rgba(98, 115, 95, 0) solid;text-align: center;background: rgba(0, 128, 0, 0.81);color: white;" type="text" value="">
+    </div>
+    <div id="examPane2" style="margin-top: 261; display: none;">
+        <p style="margin-left: 238px;margin-top: -259px;"><font style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Step3:</font><font style="font-weight: bold;color: #0055BB; font-size: 17px;">Now that you know the operation, write out the expression</font>
+        </p>
+        <br>
+        <br>
+        <input class="step3" id="value2" style="margin-top: -35px;margin-left: 450px;border-bottom: rgba(98, 115, 95, 0) solid;text-align: center;background: rgba(0, 128, 0, 0.81);color: white;" type="text" value="">
+    </div>
+    <div id="error" style="display: none;margin-left: 550px; margin-top: -500px;">
+        <h1 style="margin-left: 235px;text-shadow: 2px 2px 14px red;">Answered Flow</h1>
+        <label style="margin-left: 80px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">step1</label>
+        <label style="margin-left: 36px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;"> First identify the operation needed.</label><br>
+        <label id="step1Error" style="margin-left: 80px;color: red">error step1: you are wrong</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="margin-left: 100px"> You must know times is<font style="text-shadow: 2px 2px 14px red;"> x(*),</font>
+            </label>
+            <br>
+            <label style="margin-left:100px">plus is <font style="text-shadow: 2px 2px 14px red;">+,</font>
+            </label>
+            <br>
+            <label style="margin-left: 250px">minus is <font style="text-shadow: 2px 2px 14px red;">-,</font>
+            </label>
+            <br>
+            <label style="margin-left: 250px">devide is<font style="text-shadow: 2px 2px 14px red;"> ÷(/)</font>
+            </label>
+            <br>
+
+            <label id="subject_number11_p"></label>
+        </p>
+        <br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">step2</label>
+        <label style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Write out the sign for the operation.</label>
+        <br>
+        <label id="step2Error" style="margin-left: 235px;color: red">error step2: you are wrong</label><br>
+        <label id="subject_number_fix1" style="margin-left: 250px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;"></label><br><br>
+        <label id="subject_number_fix2" style="margin-left: 248px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;"></label>
+        
+        <br>
+        <br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">step3</label>
+        <label style="font-weight: bold;color: #03345f; font-size: 21px;">Now that you know the operation,<br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;"> write out the expression</label></label><br>
+        <label id="step3Error" style="margin-left: 235px;color: red">error step3: you are wrong</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label id="subject_number_fix" style="margin-left: 307px"></label>
+        </p>
+        <br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;"></label>
+        <label style="margin-left: 36px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Answer</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label id="answer" style="margin-left: 307px"></label>
+        </p>
+        <br>
+    </div>
+    <div id="Congratlations" style="display: none; margin-left: 1120px">
+        <h1 style="margin-left: 235px;text-shadow: 2px 2px 14px red;margin-top: -650px">Correct Answer</h1>
+        <label style="margin-left: 80px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">step1</label>
+        <label style="margin-left: 36px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;"> First identify the operation needed.</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="margin-left: 100px"> You must know times is<font style="text-shadow: 2px 2px 14px red;"> x(*),</font>
+            </label>
+            <br>
+            <label style="margin-left:100px">plus is <font style="text-shadow: 2px 2px 14px red;">+,</font>
+            </label>
+            <br>
+            <label style="margin-left: 250px">minus is <font style="text-shadow: 2px 2px 14px red;">-,</font>
+            </label>
+            <br>
+            <label style="margin-left: 250px">devide is<font style="text-shadow: 2px 2px 14px red;"> ÷(/)</font>
+            </label>
+            <br>
+
+            <label id="subject_number11_p"></label>
+        </p>
+        <br>
+        <label style="margin-left: 100px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">step2</label>
+        <label style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Write out the sign for the operation.</label>
+        <br>
+        <label id="subject_number_fix1c" style="margin-left: 100px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;"></label><br><br>
+        <label id="subject_number_fix2c" style="margin-left: 100px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;"></label>
+        
+        <br>
+        <br>
+        <label style="margin-left: 100px;font-weight: bold;color: #03345f; font-size: 21px;">step3</label>
+        <label style="font-weight: bold;color: #03345f; font-size: 21px;">Now that you know the operation,<br>
+        <label style="margin-left: 100px;font-weight: bold;color: #03345f; font-size: 21px;"> write out the expression</label></label><br>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label id="subject_number_fixc" style="margin-left: 150px"></label>
+        </p>
+        <br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;"></label>
+        <label style="margin-left: -138px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Answer</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label id="answerc" style="margin-left: 150px"></label>
+        </p>
+        <br>
+    </div>
+
+
+    <link href="../css/w3.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript">
+        var randomNumber1 = "";
+        var randomNumber2 = "";
+        var randomDigits = "";
+        var max_t = 0;
+        var min_t = 0;
+        var input1 = null;
+        var input2 = null;
+
+        var step_count = 0;
+        var step_words = ["ones", "tens", "hundreds", "thousands", "ten thousands", "hundred thousands", "millions"];
+        var max_digit = 0;
+        var carry_over = false;
+        var carry_elem;
+        var carr_over_var = [];
+        var carr_over_var2 = [];
+
+        var retry_attempt = 0;
+
+        function digits(digits) {
+            a = 1;
+            for (var i = 0; i < digits; i++) {
+                a *= 10;
+            }
+            return a;
+        }
+
+
+        function randomDigitsOnclick() {
+            carry_over = false;
+            randomDigits = $("#randomDigits").prop("value");
+            console.log(randomDigits);
+            // randomDigits = parseInt(randomDigits);
+            // if (isNaN(randomDigits)) randomDigits = 1;
+            // if (randomDigits > 7) randomDigits = 7;
+            // $("#randomDigits").prop("value", randomDigits);
+            // max_t = digits(randomDigits);
+            numRand = Math.floor(Math.random() * 20);
+            numRand1 = Math.floor(Math.random() * 19);
+            numRand2 = Math.floor(Math.random() * 12);
+            numRand3 = Math.floor(Math.random() * 13);
+
+            things = ['times', 'minus', 'plus', 'divide by'];
+            thing1 = things[Math.floor(Math.random() * things.length)];
+            thing2 = things[Math.floor(Math.random() * things.length)];
+            thing3 = things[Math.floor(Math.random() * things.length)];
+
+
+            randomNumber1 = Math.floor(Math.random() * max_t);
+            randomNumber2 = Math.floor(Math.random() * max_t);
+            $("#randomNumber1").prop("value", 'x +' + randomNumber1);
+            $("#randomNumber2").prop("value", randomNumber2);
+            $("#subject_number1_p").html(numRand);
+            $("#subject_number2_p").html(numRand1);
+            $("#subject_number3_p").html(numRand2);
+            $("#subject_number4_p").html(numRand3);
+
+            $("#thing1").html(thing1);
+            $("#thing2").html(thing2);
+            $("#thing3").html(thing3);
+
+
+            if (randomDigits == 4) {
+                $("#subject_number1_p").show();
+                $("#thing1").show();
+                $("#subject_number2_p").show();
+                $("#thing2").show();
+                $("#subject_number3_p").show();
+                $("#thing3").show();
+                $("#subject_number4_p").show();
+
+            } else if (randomDigits == 3) {
+                $("#subject_number1_p").show();
+                $("#thing1").show();
+                $("#subject_number2_p").show();
+                $("#thing2").show();
+                $("#subject_number3_p").show();
+                $("#thing3").hide();
+                $("#subject_number4_p").hide();
+            } else if (randomDigits == 2) {
+                $("#subject_number1_p").show();
+                $("#thing1").show();
+                $("#subject_number2_p").show();
+                $("#thing2").hide();
+                $("#thing3").hide();
+                $("#subject_number3_p").hide();
+                $("#subject_number4_p").hide();
+            } else {
+                $("#subject_number1_p").hide();
+                $("#thing1").hide();
+                $("#subject_number2_p").hide();
+                $("#thing2").hide();
+                $("#subject_number3_p").hide();
+                $("#thing3").hide();
+                $("#subject_number4_p").hide();
+                alert("This number must be more than 2");
+            }
+
+
+            // $("#answerPane").html('<div id="lastDiv"></div>');
+            $("#examPane").show();
+            $("#lastDiv2").html("");
+
+            // $("#value1").prop("value", input1);
+            // $("#value2").prop("value", input2);
+
+            $("#Congratlations").hide();
+            $("#error").hide();
+            $("#examPane1").hide();
+            $("#examPane2").hide();
+            $("#examPane3").hide();
+            $("#valuex").val("");
+            $("#valuex1").val("");
+            $("#value2").val("");
+
+        }
+
+
+        function startAnswer() {
+            if (randomDigits <= 1) {
+                $("#examPane1").hide();
+            } else
+                $("#examPane1").show();
+        }
+
+        $(".step1").keydown(function(event){
+            if(event.keyCode == 13){  
+                var x = document.getElementById("valuex");
+                console.log(x.value);
+                if (x.value==false){
+                    alert('Input the operators that you know');
+                }else{
+                    $("#examPane3").show();
+                }
+            }
+        }).focus();
+        $(".step2").keydown(function(event){
+            if(event.keyCode == 13){ 
+                var x1 = document.getElementById("valuex1");
+                console.log(x1.value);
+                if (x1.value==false){
+                    alert('Input the operators("+","-","*","/")');
+                }else{
+                    $("#examPane2").show();
+                }
+
+            }
+
+        }).focus();
+
+        $(".step3").keydown(function(event){
+            if(event.keyCode == 13){
+                var b = document.getElementById("value2");
+                if(b.value !=false){ 
+
+                    $("#Congratlations").show();
+                    $("#error").show();
+                   
+                    if (randomDigits == 4) {
+                            var fix1 = "This exmaple it is &nbsp;" + thing1+""+","+thing2+","+thing3;                       
+                            $("#subject_number_fix1").html(fix1);
+                            $("#subject_number_fix1c").html(fix1);
+                    }
+                    if (randomDigits == 3) {
+
+                        var fix1 = "This exmaple it is &nbsp;"+thing1+""+","+thing2;
+                    
+                           
+                            $("#subject_number_fix1").html(fix1);
+                            $("#subject_number_fix1c").html(fix1);
+
+                    }
+                    if (randomDigits == 2) {
+                        var fix1 = "This exmaple it is &nbsp;"+thing1;
+                    
+                           
+                            $("#subject_number_fix1").html(fix1);
+                            $("#subject_number_fix1c").html(fix1);
+
+                    }
+
+                    if (thing1 == 'plus') {
+                        thing1 = '+';
+
+                    } else if (thing1 == 'minus') {
+                        thing1 = '-';
+                    } else if (thing1 == 'times') {
+                        // thing1 = 'x';
+                        thing1 = '*';
+                    } else {
+                        thing1 = '÷';
+                        // thing1 = '/';
+                    }
+
+
+                    if (thing2 == "plus") {
+                        thing2 = "+";
+                        // console.log(thing2);
+                    } else if (thing2 == "minus") {
+                        thing2 = "-";
+                    } else if (thing2 == "times") {
+                        // thing2 = "x";
+                        thing2 = "*";
+                    } else {
+                        // thing2 = "÷";
+                        thing2 = "/";
+                    }
+
+                    if (thing3 == "plus") {
+                        thing3 = "+";
+                        // console.log(thing2);
+                    } else if (thing3 == "minus") {
+                        thing3 = "-";
+                    } else if (thing3 == "times") {
+                        // thing3 = "x"
+                        thing3 = "*";
+                    } else {
+                        // thing3 = "÷";
+                        thing3 = "/";
+                    }
+                    if (randomDigits == 4) {
+                        var fix2 = "so we know we need to use &nbsp;"+"“"+thing1+"”"+","+"“"+thing2+"”"+"and"+"“"+thing3+"”";
+                        $("#subject_number_fix2").html(fix2);
+                        $("#subject_number_fix2c").html(fix2);
+                        if (b.value != numRand + thing1 + numRand1 + thing2 + numRand2 + thing3 + numRand3) {
+                            $("#error").show();
+                            var fix = numRand + thing1 + numRand1 + thing2 + numRand2 + thing3 + numRand3;
+
+                            $("#subject_number_fix").html(fix);
+                            $("#subject_number_fixc").html(fix);
+                            $("#answer").html(fix);
+                            $("#answerc").html(fix);
+
+
+                        } else {
+                            $("#Congratlations").show();
+                            $("#error").hide();
+                        }
+
+
+                    }
+                    if (randomDigits == 3) {
+                        var fix3 = "so we know we need to use &nbsp;"+"“"+thing1+"”"+"and"+"“"+thing2+"”";
+                        $("#subject_number_fix2").html(fix3);
+                        $("#subject_number_fix2c").html(fix2);
+                        if (b.value != numRand + thing1 + numRand1 + thing2 + numRand2) {
+                            $("#error").show();
+                            var fix = numRand + thing1 + numRand1 + thing2 + numRand2;
+                            $("#subject_number_fix").html(fix);
+                             $("#subject_number_fixc").html(fix);
+                            $("#answer").html(fix);
+                            $("#answerc").html(fix);
+
+
+                        } else {
+                            $("#Congratlations").show();
+                            $("#error").hide();
+                        }
+
+
+                    }
+                    if (randomDigits == 2) {
+                         var fix4 = "so we know we need to use &nbsp;"+"“"+thing1+"”";
+                         $("#subject_number_fix2").html(fix4);
+                         $("#subject_number_fix2c").html(fix2);
+                        if (b.value != numRand + thing1 + numRand1) {
+                            $("#error").show();
+                            var fix = numRand + thing1 + numRand1;
+                            $("#subject_number_fix").html(fix);
+                             $("#subject_number_fixc").html(fix);
+                            $("#answer").html(fix);
+                            $("#answerc").html(fix);
+
+
+                        } else {
+                            $("#Congratlations").show();
+                            $("#error").hide();
+                        }
+
+
+                    }
+                }else{
+                    alert("Input the answer");
+                }
+            }
+
+        }).focus();
+    </script>
+</body>
+
+</html>

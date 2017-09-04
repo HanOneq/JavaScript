@@ -1,0 +1,219 @@
+<html>
+<head>
+   <style type="text/css">
+        html {
+            background: url(../imgs/background1.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style> 
+    
+</head>
+<body>
+<div style="width: 1200px; height: 500px; margin: auto;margin-top:80px">
+
+<div>
+    <label style="font-weight: bold;color: #03345f; font-size: 21px;">Which equation matches the table?
+</label>
+    <input type="text" name="randomDigits" id="randomDigits" style="display:none;border-bottom: rgba(98, 115, 95, 0) solid;text-align: center;background: rgba(0, 128, 0, 0.81);color: white; required autofocus value=" 4"="">
+    <input type="button" style="border-radius: 30px;" value="GEN" onclick="randomDigitsOnclick()">
+    <br>
+    <br>
+</div>
+
+
+
+
+<div id="examPane" style="display: none;">
+
+    <div style="float: left; width: 40%;">
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="display:none;font-weight: bold;color: #03345f; font-size: 21px;">Equation</label>&nbsp; &nbsp;
+            <label>
+                <table style="margin-left: 140px;margin-top: -40px;">
+                    <tbody><tr>
+                      <td style="text-shadow: 2px 2px 14px red;">X</td>
+                      <td style="text-shadow: 2px 2px 14px red;">Y</td>
+                  </tr>
+                  <tr>
+                      <td><label>1</label></td>
+                     
+                      <td><label id="subject_number1_p" style="text-shadow: 2px 2px 14px red;">b</label></td>
+                  </tr>
+                  <tr>
+                      <td><label>2</label></td>
+                     
+                      <td><label id="subject_number2_p" style="text-shadow: 2px 2px 14px red;">b</label></td>
+                  </tr>
+                  <tr>
+                      <td><label>3</label></td>
+                     
+                      <td><label id="subject_number3_p" style="text-shadow: 2px 2px 14px red;">b</label></td>
+                  </tr>
+                 
+                
+              </tbody></table></label><br>
+                
+              <label style="margin-left: -31px">Find the answer</label><label style="margin-left: 20px">a.&nbsp;Y=</label><label id="value_y"></label><br>
+              <label style="margin-left: 137px">b.&nbsp;Y=</label><label id="value_y1"></label><br>
+              <label style="margin-left: 137px">c.&nbsp;Y=</label><label id="value_y2"></label><br>
+              <label style="margin-left: 137px">d.&nbsp;Y=</label><label id="value_y3"></label>
+              
+            </p>
+            <br>
+            <button style="border-radius: 30px;" onclick="startAnswer();">Start Answer</button>
+        </div>
+
+    </div>
+
+</div>
+<div id="examPane1" style="display: none;">
+    
+    
+    <p style="margin-top: -132px;margin-left: 238px;font-weight: bold;color: #03345f; font-size: 21px;">Find out the crrect result</p>
+    <input name="continue1" id="value" style="margin-top: -45px;margin-left: 570px;" type="text" value=""><span><button onclick="startCheck();" style="margin-top: -42px;border-radius: 30px;"> Check it</button></span>
+
+</span></span></span></div>
+<div id="error" style="display: none;margin-left: 600px;margin-top: -450px;">
+    <h1 style="margin-left: 235px;text-shadow: 2px 2px 14px red;">Answered Flow</h1>
+    <label id="stepError" style="margin-left: 150px;color:red;display: none;">error: you are wrong!</label><br>
+   
+   <label id="value_y_1" style="margin-left: 268px"></label><label>/1=</label> <label id="value_y_11"></label><br>
+   <label id="value_y_2" style="margin-left: 268px"></label><label>/2=</label> <label id="value_y_12" ></label><br>
+   <label id="value_y_3" style="margin-left: 268px"></label><label>/3=</label> <label id="value_y_13" ></label>
+   <p style="margin-top: 18px;margin-left: 238px;font-weight: bold;color: #03345f; font-size: 21px;">Therefore the result is&nbsp;&nbsp;<label id = "result1"></label></p>
+    
+</div>
+
+<div id="Congratlations" style="display: none;margin-left: 1000px;margin-top: -198px;">
+    <h1 style="margin-left: 235px;text-shadow: 2px 2px 14px red;">Correct Answer</h1>
+    <label id="value_y_1c" style="margin-left: 268px"></label><label>/1=</label> <label id="value_y_11c"></label><br>
+   <label id="value_y_2c" style="margin-left: 268px"></label><label>/2=</label> <label id="value_y_12c" ></label><br>
+   <label id="value_y_3c" style="margin-left: 268px"></label><label>/3=</label> <label id="value_y_13c" ></label>
+   <p style="margin-top: 18px;margin-left: 238px;font-weight: bold;color: #03345f; font-size: 21px;">Therefore the result is&nbsp;&nbsp;<label id = "result1c"></label></p>
+</div>
+
+
+<link href="../css/w3.css" rel="stylesheet">
+<script src="../js/jquery.js"></script>
+<script type="text/javascript">
+    var randomNumber1 = "";
+    var randomNumber_2 = "";
+    var randomNumber2 = "";
+    var randomNumber3 = "";
+    var randomNumber4 = "";
+    var randomNumber5 = "";
+    var randomDigits = "";
+    var max_t = 0;
+    var min_t = 0;
+
+    var step_count = 0;
+    var step_words = ["ones", "tens", "hundreds", "thousands", "ten thousands", "hundred thousands", "millions"];
+    var max_digit = 0;
+    var carry_over = false;
+    var carry_elem;
+    var carr_over_var = [];
+    var carr_over_var2 = [];
+
+    var retry_attempt = 0;
+
+    function digits(digits) {
+        a = 1;
+        for (var i = 0; i < digits; i++) {
+            a *= 10;
+        }
+        return a;
+    }
+
+
+    function randomDigitsOnclick() {
+        carry_over = false;
+        randomDigits = $("#randomDigits").prop("value");
+        randomDigits = parseInt(randomDigits);
+        if (isNaN(randomDigits)) randomDigits = 1;
+        if (randomDigits > 7) randomDigits = 7;
+        $("#randomDigits").prop("value", randomDigits);
+        max_t = digits(randomDigits);
+        console.log(max_t);
+
+        randomNumber1 = Math.floor(Math.random() * max_t);
+        randomNumber_2 = Math.floor(Math.random() * max_t);
+        randomNumber2 =randomNumber1*2;
+        randomNumber3 =randomNumber1*3;
+        randomNumber4 = randomNumber1+'*X';
+
+        $("#value_y").html(randomNumber4);
+        $("#value_y1").html('X'+"+"+randomNumber1);
+        $("#value_y2").html('X'+"-"+randomNumber1);
+        $("#value_y3").html('X'+"/"+randomNumber1);
+
+        $("#value_y_1").html(randomNumber1);
+        $("#value_y_2").html(randomNumber2);
+        $("#value_y_2c").html(randomNumber2);
+        $("#value_y_3").html(randomNumber3);
+        $("#value_y_3c").html(randomNumber3);
+        $("#value_y_11").html(randomNumber1);
+        $("#value_y_12").html(randomNumber1);
+        $("#value_y_13").html(randomNumber1);
+         $("#value_y_1c").html(randomNumber1);
+        $("#value_y_11c").html(randomNumber1);
+        $("#value_y_12c").html(randomNumber1);
+        $("#value_y_13c").html(randomNumber1);
+        $("#result1").html('a');
+        $("#result1c").html('a');
+
+
+        $("#randomNumber1").prop("value", randomNumber1+"÷"+randomNumber2);
+        $("#randomNumber2").prop("value", "y");
+        $("#subject_number1_p").html(randomNumber1);
+        $("#subject_number2_p").html(randomNumber2);
+        $("#subject_number3_p").html(randomNumber3);
+        
+        $("#answerPane").html('<div id="lastDiv"></div>');
+        $("#examPane").show();
+        $("#lastDiv2").html("");
+
+        $("#Congratlations").hide();
+        $("#error").hide();
+        $("#examPane1").hide();
+        $("#examPane2").hide();
+        $("#error1").hide();
+        $("#stepError").hide();
+        $("#stepError").hide();
+        $("#value").val("");
+            step_count = 0;
+        }
+
+
+        function startAnswer() {
+        // if($(".answer_value").length == 0) generateAnswerStep();
+        $("#examPane1").show();
+    }
+
+    function startCheck() {
+        $("#error").show();
+        $("#Congratlations").show();
+        var d = document.getElementById("value");
+      
+         if(d.value!="a"){
+            $("#stepError").show();
+
+    }    
+}
+
+</script>
+
+
+</body>
+</html>
+        
+
+
+
+
+
+
+
+

@@ -1,0 +1,256 @@
+<html>
+
+<head>
+<style type="text/css">
+        html {
+            background: url(../imgs/background1.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width: 1200px; height: 500px; margin: auto;margin-top:80px">
+
+        <div>
+            <label>randomDigits:</label>
+            <input type="text" name="randomDigits" id="randomDigits" required="" autofocus="" value="4">
+            <input type="button" value="GEN" onclick="randomDigitsOnclick()">
+            <br>
+            <br>
+        </div>
+
+        <div style="width: 285px;">
+            <label>Expression:</label>
+            <input type="text" name="randomNumber1" id="randomNumber1" style="margin-left: 18px" readonly=""><span> =</span>
+            <br>
+            <br>
+        </div>
+
+        <div style=" margin-top: -38px;">
+            <label style="display: none;">randomNumber2:</label>
+            <input style="margin-left: 290px;" type="text" name="randomNumber2" id="randomNumber2" readonly="">
+            <br>
+            <br>
+        </div>
+
+
+        <div id="examPane" style="display: none;">
+            <div style="float: left; width: 40%;">
+                <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+                    <label style="color: green">Equation</label>&nbsp; &nbsp;
+                    <label>x</label> -
+                    <label id="subject_number1_p"></label> =
+                    <label id="subject_number2_p"></label>
+                </p>
+                <br>
+                <button onclick="startAnswer();">Start Answer</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="examPane1" style="display: none;">
+            <p style="margin-left: 238px;margin-top: -259px;">Step1:Rewrite the equation &nbsp; x =</p>
+            <input class="step1_1" name="continue1" id="value1" style="margin-top: -34px;margin-left: 453px;" type="text" value="">
+    </div>
+    <div id="examPane2" style="margin-top: 261; display: none;">
+        <p style="margin-left: 238px;margin-top: -259px;">Step2:Answer &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; x =</p>
+        <input class="step2_2" id="value2" style="margin-top: -35px;margin-left: 453px;" type="text" value="">
+    </div>
+    <div id="error" style="display: none; margin-left: 550px; margin-top: -350px">
+        <h1 style="margin-left: 235px;">Answered Flow</h1>
+        <label style="margin-left: 235px;">step1</label>
+        <label style="margin-left: 36px">Rearrange the equation to isolate the unknown</label><br>
+        <label id="step1Error" style="margin-left: 235px;display: none;color: red;">error step1: you are wrong!</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="margin-left: 150px">x</label> =
+            <label id="subject_number12_p"></label> -(-
+            <label id="subject_number11_p"></label>
+            <label id="">)</label>=
+            <label id="subject_number12_p2"></label> +
+            <label id="subject_number11_p1"></label>
+        </p>
+        <br>
+        <label style="margin-left: 75px;">step2</label>
+        <label style="margin-left: 36px">Now solve the equation</label><br>
+        <label id="step2Error" style="margin-left: 75px;display: none;color: red;">error step2: you are wrong!</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;margin-left: 310px;">
+            <label >x</label> =
+            <label id="subject_number32_p"></label> +
+            <label id="subject_number31_p"></label>=
+            <label id="subject_number22_p">
+            </label>
+        </p>
+        <br>
+        <label style="margin-left: 235px;">step3</label>
+        <label style="margin-left: 36px">Answer</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="margin-left: 307px">x</label> =
+            <label id="subject_number33_p"></label>
+        </p>
+        <br>
+    </div>
+    <div id="Congratlations" style="display: none;margin-top: -405px;margin-left:1000px">
+        <h1 style="margin-left: 235px;">Correct Answer</h1>
+        <label style="margin-left: 235px;">step1</label>
+        <label style="margin-left: 36px">Rearrange the equation to isolate the unknown</label><br>
+       
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="margin-left: 310px">x</label> =
+            <label id="subject_number12_pc"></label> -(-
+            <label id="subject_number11_pc"></label>
+            <label id="">)</label>
+        </p>
+        <br>
+        <label style="margin-left: 240px;">step2</label>
+        <label style="margin-left: 36px">Now solve the equation</label><br>
+        
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="margin-left: 310px">x</label> =
+            <label id="subject_number32_pc"></label> +
+            <label id="subject_number31_pc"></label>=
+            <label id="subject_number22_pc">
+            </label>
+        </p>
+        <br>
+        <label style="margin-left: 235px;">step3</label>
+        <label style="margin-left: 36px">Answer</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="margin-left: 307px">x</label> =
+            <label id="subject_number33_pc"></label>
+        </p>
+        <br>
+    </div>
+
+
+    <link href="../css/w3.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript">
+        var randomNumber1 = "";
+        var randomNumber2 = "";
+        var randomDigits = "";
+        var max_t = 0;
+        var min_t = 0;
+        var input1 = null;
+        var input2 = null;
+
+        var step_count = 0;
+        var step_words = ["ones", "tens", "hundreds", "thousands", "ten thousands", "hundred thousands", "millions"];
+        var max_digit = 0;
+        var carry_over = false;
+        var carry_elem;
+        var carr_over_var = [];
+        var carr_over_var2 = [];
+
+        var retry_attempt = 0;
+
+        function digits(digits) {
+            a = 1;
+            for (var i = 0; i < digits; i++) {
+                a *= 10;
+            }
+            return a;
+        }
+
+
+        function randomDigitsOnclick() {
+            carry_over = false;
+            randomDigits = $("#randomDigits").prop("value");
+            randomDigits = parseInt(randomDigits);
+            if (isNaN(randomDigits)) randomDigits = 1;
+            if (randomDigits > 7) randomDigits = 7;
+            $("#randomDigits").prop("value", randomDigits);
+            max_t = digits(randomDigits);
+            console.log(max_t);
+
+            randomNumber1 = Math.floor(Math.random() * max_t);
+            randomNumber2 = Math.floor(Math.random() * max_t);
+            $("#randomNumber1").prop("value", 'x -' + randomNumber1);
+            $("#randomNumber2").prop("value", randomNumber2);
+            $("#subject_number1_p").html(randomNumber1);
+            $("#subject_number2_p").html(randomNumber2);
+            $("#answerPane").html('<div id="lastDiv"></div>');
+            $("#examPane").show();
+            $("#lastDiv2").html("");
+
+            $("#value1").prop("value", input1);
+            $("#value2").prop("value", input2);
+
+            $("#Congratlations").hide();
+            $("#error").hide();
+            $("#examPane1").hide();
+            $("#examPane2").hide();
+            $("#step1Error").hide();
+            $("#step2Error").hide();
+
+
+
+
+            var large_num = randomNumber1 > randomNumber2 ? randomNumber1 : randomNumber2;
+            max_digit = getDigitsCouunt(large_num);
+
+
+            step_count = 0;
+        }
+
+
+        var b = document.getElementById("value2");
+        var aa = document.getElementById("value1");
+        function startAnswer() {
+            // if($(".answer_value").length == 0) generateAnswerStep();
+            $("#examPane1").show();
+        }
+
+         $(".step1_1").keydown(function(event){
+            if(event.keyCode == 13){          
+                if (aa.value != false) {
+                    $("#examPane2").show();
+                } else {
+                    alert('Input the valid expression');
+                }
+            }
+
+        }).focus();
+
+       $(".step2_2").keydown(function(event){
+            if(event.keyCode == 13){          
+                if (b.value != false) {
+                    $("#Congratlations").show();
+                    $("#error").show();
+
+                    var randomNumber22 = randomNumber2 + randomNumber1;
+                    $("#subject_number11_p").html(randomNumber1);
+                    $("#subject_number12_p").html(randomNumber2);
+                    $("#subject_number11_p1").html(randomNumber1);
+                    $("#subject_number12_p2").html(randomNumber2);
+                    $("#subject_number31_p").html(randomNumber1);
+                    $("#subject_number32_p").html(randomNumber2);
+                    $("#subject_number22_p").html(randomNumber22);
+                    $("#subject_number33_p").html(randomNumber22);
+                    $("#subject_number11_pc").html(randomNumber1);
+                    $("#subject_number12_pc").html(randomNumber2);
+                    $("#subject_number31_pc").html(randomNumber1);
+                    $("#subject_number32_pc").html(randomNumber2);
+                    $("#subject_number22_pc").html(randomNumber22);
+                    $("#subject_number33_pc").html(randomNumber22);
+                    if (b.value != randomNumber2 + randomNumber1) {
+                        $("#step2Error").show();
+                    }
+                    if(aa.value != randomNumber2+"+"+randomNumber1){
+                       $("#step1Error").show(); 
+                    }
+                }else{
+                    alert("Input the Anser");
+                    $("#Congratlations").hide();
+                    $("#error").hide();
+                }
+            }
+        }).focus();
+    </script>
+</body>
+
+</html>

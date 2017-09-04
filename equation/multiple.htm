@@ -1,0 +1,496 @@
+<html>
+
+<head>
+ <style type="text/css">
+        html {
+            background: url(../imgs/background1.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>   
+</head>
+
+<body>
+    <div style="width: 1200px; height: 500px; margin: auto;margin-top:80px">
+        <div>
+            <label style="font-weight: bold;color: #03345f; font-size:20px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Multiply the following expressions</label>
+            <input type="text" name="randomDigits" id="randomDigits" required="" autofocus="" value="4" style="border-bottom: rgba(98, 115, 95, 0) solid;text-align: center;background: rgba(0, 128, 0, 0.81);color: white; display: none;
+        }">
+            <input type="button" value="GEN" style="border-radius: 30px;" onclick="randomDigitsOnclick()">
+            <br>
+            <br>
+        </div>
+
+        <div id="examPane" style="display: none;">
+            <div style="float: left; width: 40%;">
+                <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+                    <label style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Equation</label>&nbsp; &nbsp;
+
+                    <label>(</label>
+                    <label id="subject_number1_p" style="display: none;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+                    <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu1" style="text-shadow: 2px 2px 14px red;"></sup></label>
+                    
+                    <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu2" style="text-shadow: 2px 2px 14px red;"></sup></label></label>
+                    <label>)</label><label>*</label>
+                    <label>(</label>
+                    <label id="subject_number2_p" style="display: none;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+                    <label  style="text-shadow: 2px 2px 14px red;">A<sup id="subject_number3_p" style="text-shadow: 2px 2px 14px red;"></sup></label>
+                    
+                   
+                    <label id="" style="display: none;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+                    <label  style="text-shadow: 2px 2px 14px red;">B<sup id="subject_number4_p" style="text-shadow: 2px 2px 14px red;"></sup></label></label>
+                    <label>)</label>
+
+                </p>
+                <br>
+                <button style="border-radius: 30px;" onclick="startAnswer();">Start Answer</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="examPane1" style="display: none;">
+        <div id="step1" style="display: none;">
+            <p style="margin-left: 238px;margin-top: -259px;font-weight: bold;color: #03345f; font-size: 21px;">Step1:Rearrange the terms </p>
+            <input class="step1" name="continue1" id="value1" style="margin-left: 400px;" type="text" value="">
+        </div>
+        <div id="step2_1" style="display: none;">
+            <p style="margin-left: 238px;font-weight: bold;color: #03345f; font-size: 21px;">Step2:Multiply the pieces</p>
+            <p style="margin-left: 290px;font-weight: bold;color: #03345f; font-size: 21px;">-Multiply the Contsts</p>
+            <input class="step2_1" name="continue1" id="value2" style="margin-left: 400px;" type="text" value="">
+        </div>
+        <div id="step2_2" style="display: none;">
+            <p style="margin-left: 290px;font-weight: bold;color: #03345f; font-size: 21px;">-Multiply the first variable itmes</p>
+            <input class="step2_2" name="continue1" id="value3" style="margin-left:400px;" type="text" value="">
+        </div>
+        <div id="step2_3" style="display: none;">
+            <p style="margin-left: 290px;font-weight: bold;color: #03345f; font-size: 21px;">-Mutiply the second variable items</p>
+            <input class="step2_3" name="continue1" id="value4" style="margin-left: 400px;" type="text" value="">
+        </div>
+        <div id="step3" style="display: none;">
+            <p style="margin-left: 238px;font-weight: bold;color: #03345f; font-size: 21px;">Step3:Final Answer</p>
+            <input class="step3" name="continue1" id="value" style="margin-left: 400px;" type="text" value=""></div>
+        <div id="examPane2" style="margin-top: 261; display: none;">
+        <p style="margin-left: 238px;margin-top: -259px;"><font style="font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Step3:</font><font style="font-weight: bold;color: #0055BB; font-size: 17px;">Now that you know the operation, write out the expression</font>
+        </p>
+        <br>
+        <br>
+        <input id="value2" style="margin-left: 450px;border-bottom: rgba(98, 115, 95, 0) solid;text-align: center;background: rgba(0, 128, 0, 0.81);color: white;" type="text" value=""><span><button onclick="startCheck();" style="margin-top: -42px;border-radius: 30px; "> Check it</button></span>
+    </div>
+    <div id="error" style="display: none;width: 900px;margin-left: 460px;margin-top: -720px;">
+        <h1 style="margin-left: 235px;text-shadow: 2px 2px 14px red;">Answered Flow</h1>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">step1</label>
+        <label style="margin-left: 36px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">  Rearrange the terms</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;"><br>
+        <label id = "step1Error" style="margin-left: 235px; color: red; display: none;">error step1: you are wrong!</label><br> 
+            <label id  ="err_con1" style="margin-left: 305px" ></label>
+            <label>*</label>
+            <label id = "err_con2" ></label>
+            <label>*</label>
+            <label id err_var1>A<sup id="err_var1_exp1"></sup></label>
+            <label>*</label>
+            <label id err_var1>A<sup id="err_var1_exp2"></sup></label>
+            <label>*</label>
+            <label id err_var1>B<sup id="err_var2_exp1"></sup></label>
+            <label>*</label>
+            <label id err_var1>B<sup id="err_var2_exp2"></sup></label>
+           
+        </p>
+        <br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Step 2: Multipy the pieces</label><br>
+        <label style="margin-left: 300px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Multiply the consts</label><br><br>
+          	<label id = "step2Error1" style="margin-left: 300; color: red; display: none;">error: you are wrong!</label><br>
+            <label id="subject_number1_p11" style="margin-left:307px;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+            <label>*</label>
+            <label id="subject_number2_p22" style="color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+            <label>=</label>
+            <label id="subject_number2_p_con" style="color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+            
+        <br>
+        <br>
+        <label style="margin-left: 300px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">-Multiply the first variable itmes</label><br><br>
+          	<label id = "step2Error2" style="margin-left: 300; color: red; display: none;">error: you are wrong!</label><br>
+            <label  style="text-shadow: 2px 2px 14px red;margin-left:307px;">A<sup id="jisu1_1" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>*</label>
+            <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu1_2" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>=</label>
+            <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu1_3" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>=</label>
+            <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu1_4" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            
+            <br>
+        <br>
+        <label style="margin-left: 300px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">-Multiply the second variable itmes</label><br>
+          	<label id="step2Error3" style="margin-left: 300; color: red; display: none;">error: you are wrong!</label><br>
+            <label  style="text-shadow: 2px 2px 14px red;margin-left:307px;">B<sup id="jisu2_1" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>*</label>
+            <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu2_2" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>=</label>
+            <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu2_3" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>=</label>
+            <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu2_4" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            
+        <br>
+        <br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">step3:Final answer</label><br><br>
+        	<label id="step3Error" style="margin-left: 235; color: red; display: none;">error step3: you are wrong!</label><br>
+            <label id="const_" style="margin-left:307px;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+            <label>*</label>
+            <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu_1" style="text-shadow: 2px 2px 14px red;"></sup></label>
+             <label>*</label>
+            <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu_2" style="text-shadow: 2px 2px 14px red;"></sup></label> </label>
+            <br>
+        <br>
+            
+    </div>
+
+    <div id="Congratlations" style="display: none;margin-left: 965px;margin-top: -660px">
+        <h1 style="margin-left: 235px;text-shadow: 2px 2px 14px red;">Correct Answer</h1>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">step1</label>
+        <label style="margin-left: 36px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">  Rearrange the terms</label>
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;"><br>
+            <label id  ="err_con1c" style="margin-left: 305px" ></label>
+            <label>*</label>
+            <label id = "err_con2c" ></label>
+            <label>*</label>
+            <label id err_var1>A<sup id="err_var1_exp1c"></sup></label>
+            <label>*</label>
+            <label id err_var1>A<sup id="err_var1_exp2c"></sup></label>
+            <label>*</label>
+            <label id err_var1>B<sup id="err_var2_exp1c"></sup></label>
+            <label>*</label>
+            <label id err_var1>B<sup id="err_var2_exp2c"></sup></label>
+           
+        </p>
+        <br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Step 2: Multipy the pieces</label><br>
+        <label style="margin-left: 300px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">Multiply the consts</label><br><br>
+          
+            <label id="subject_number1_p11c" style="margin-left:307px;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+            <label>*</label>
+            <label id="subject_number2_p22c" style="color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+            <label>=</label>
+            <label id="subject_number2_p_conc" style="color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+            
+        <br>
+        <br>
+        <label style="margin-left: 300px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">-Multiply the first variable itmes</label><br><br>
+            <label  style="text-shadow: 2px 2px 14px red;margin-left:307px;">A<sup id="jisu1_1c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>*</label>
+            <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu1_2c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>=</label>
+            <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu1_3c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>=</label>
+            <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu1_4c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            
+            <br>
+        <br>
+        <label style="margin-left: 300px;font-weight: bold;color: #0055BB; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">-Multiply the second variable itmes</label><br>
+            <label  style="text-shadow: 2px 2px 14px red;margin-left:307px;">B<sup id="jisu2_1c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>*</label>
+            <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu2_2c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>=</label>
+            <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu2_3c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            <label>=</label>
+            <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu2_4c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+            
+        <br>
+        <br>
+        <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;border-bottom: rgba(101, 69, 69, 0.51) solid 2px;">step3:Final answer</label><br><br>
+        	<label id="step3Error" style="margin-left: 235; color: red; display: none;">error step3: you are wrong!</label><br>
+            <label id="const_c" style="margin-left:307px;color: #0055BB;text-shadow: 2px 2px 14px red;"></label>
+            <label>*</label>
+            <label  style="text-shadow: 2px 2px 14px red;">A<sup id="jisu_1c" style="text-shadow: 2px 2px 14px red;"></sup></label>
+             <label>*</label>
+            <label  style="text-shadow: 2px 2px 14px red;">B<sup id="jisu_2c" style="text-shadow: 2px 2px 14px red;"></sup></label> </label>
+            <br>
+        <br>
+    </div>
+
+    <link href="../css/w3.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript">
+        var randomNumber1 = "";
+        var randomNumber2 = "";
+        var randomDigits = "";
+        var max_t = 0;
+        var min_t = 0;
+        var input1 = null;
+        var input2 = null;
+
+        var step_count = 0;
+        var step_words = ["ones", "tens", "hundreds", "thousands", "ten thousands", "hundred thousands", "millions"];
+        var max_digit = 0;
+        var carry_over = false;
+        var carry_elem;
+        var carr_over_var = [];
+        var carr_over_var2 = [];
+
+        var retry_attempt = 0;
+
+        function digits(digits) {
+            a = 1;
+            for (var i = 0; i < digits; i++) {
+                a *= 10;
+            }
+            return a;
+        }
+
+
+        function randomDigitsOnclick() {
+            carry_over = false;
+            randomDigits = $("#randomDigits").prop("value");
+            console.log(randomDigits);
+        
+            numRand = Math.floor(Math.random() * 9);
+            numRand1 = Math.floor(Math.random() * 9);
+            numRand2 = Math.floor(Math.random() * 9);
+            numRand3 = Math.floor(Math.random() * 9);
+
+            jisu1 = Math.floor(Math.random() * 9);
+            jisu2 = Math.floor(Math.random() * 9);
+
+            things = ['+', '-', '+', '-'];
+            thing1 = things[Math.floor(Math.random() * things.length)];
+            thing2 = things[Math.floor(Math.random() * things.length)];
+            thing3 = things[Math.floor(Math.random() * things.length)];
+
+
+            randomNumber1 = Math.floor(Math.random() * max_t);
+            randomNumber2 = Math.floor(Math.random() * max_t);
+
+            
+
+            $("#subject_number1_p").html(numRand);
+            $("#subject_number2_p").html(numRand1);
+            $("#subject_number3_p").html(numRand2);
+            $("#subject_number4_p").html(numRand3);
+            $("#jisu1_1").html(jisu1);
+            $("#jisu1_2").html(numRand2);
+            var jisu_sum1 = jisu1+"+"+numRand2;
+            $("#jisu1_3").html(jisu_sum1);
+            $("#jisu1_4").html(jisu1+numRand2);
+
+            $("#jisu1_1c").html(jisu1);
+            $("#jisu1_2c").html(numRand2);
+            $("#jisu1_3c").html(jisu_sum1);
+            $("#jisu1_4c").html(jisu1+numRand2);
+            
+            $("#jisu2_1").html(jisu2);
+            $("#jisu2_2").html(numRand3);
+            var jisu_sum2 = jisu2+"+"+numRand3;
+            $("#jisu2_3").html(jisu_sum2);
+            $("#jisu2_4").html(jisu2+ numRand3);
+            $("#jisu_1").html(jisu1+numRand2);
+            $("#jisu_2").html(jisu2+ numRand3);
+
+          	$("#jisu2_1c").html(jisu2);
+            $("#jisu2_2c").html(numRand3);
+            // var jisu_sum2 = jisu2+"+"+numRand3;
+            $("#jisu2_3c").html(jisu_sum2);
+            $("#jisu2_4c").html(jisu2+ numRand3);
+            $("#jisu_1c").html(jisu1+numRand2);
+            $("#jisu_2c").html(jisu2+ numRand3);
+
+
+            $("#err_con1").html(numRand);
+            $("#err_con2").html(numRand1);
+            $("#err_var1_exp1").html(jisu1);
+            $("#err_var1_exp2").html(numRand2);
+            $("#err_var2_exp1").html(jisu2);
+            $("#err_var2_exp2").html(numRand3);
+
+            $("#err_con1c").html(numRand);
+            $("#err_con2c").html(numRand1);
+            $("#err_var1_exp1c").html(jisu1);
+            $("#err_var1_exp2c").html(numRand2);
+            $("#err_var2_exp1c").html(jisu2);
+            $("#err_var2_exp2c").html(numRand3);
+
+       
+            $("#subject_number1_p1").html(numRand);
+            $("#subject_number2_p2").html(numRand2);
+            $("#subject_number1_p11").html(numRand);
+            $("#subject_number2_p22").html(numRand1);
+            var p_con = numRand*numRand1;
+            $("#subject_number2_p_con").html(p_con);
+
+            $("#const_").html(numRand*numRand1);
+
+            $("#subject_number1_p1c").html(numRand);
+            $("#subject_number2_p2c").html(numRand2);
+            $("#subject_number1_p11c").html(numRand);
+            $("#subject_number2_p22c").html(numRand1);
+            // var p_con = numRand*numRand1;
+            $("#subject_number2_p_conc").html(p_con);
+
+            $("#const_c").html(numRand*numRand1);
+
+            $("#subject_number1_p1y").html(numRand1);
+            $("#subject_number2_p2y").html(numRand3);
+
+            $("#subject_number3_p3").html(numRand1);
+            $("#subject_number4_p4").html(numRand3);
+
+            $("#jisu1").html(jisu1);
+            $("#jisu2").html(jisu2);
+            $("#step1Error").hide();
+            $("#step2Error1").hide();
+            $("#step2Error2").hide();
+            $("#step2Error3").hide();
+            $("#step3Error").hide();
+
+            $("#step1").hide();
+            $("#step2_1").hide();
+            $("#step2_2").hide();
+            $("#step2_3").hide();
+            $("#step3").hide();
+
+            $("#value3").val("");
+            $("#value2").val("");
+            $("#value1").val("");
+            $("#value4").val("");
+            $("#value").val("");
+
+            
+             if (randomDigits == 4) {
+                $("#subject_number1_p").show();
+                $("#thing1").show();
+                $("#subject_number2_p").show();
+                $("#thing2").show();
+                $("#subject_number3_p").show();
+                $("#thing3").show();
+                $("#subject_number4_p").show();
+
+            } else {
+                $("#subject_number1_p").hide();
+                $("#thing1").hide();
+                $("#subject_number2_p").hide();
+                $("#thing2").hide();
+                $("#subject_number3_p").hide();
+                $("#thing3").hide();
+                $("#subject_number4_p").hide();
+                alert("This number must be more than 2");
+            }
+
+
+            // $("#answerPane").html('<div id="lastDiv"></div>');
+            $("#examPane").show();
+            $("#lastDiv2").html("");
+            $("#Congratlations").hide();
+            $("#error").hide();
+            $("#examPane1").hide();
+            $("#examPane2").hide();
+            $("#examPane3").hide();
+        }
+
+
+        function startAnswer() {
+            // if($(".answer_value").length == 0) generateAnswerStep();
+
+            if (randomDigits <= 1) {
+                $("#examPane1").hide();
+            } else
+                $("#examPane1").show();
+                $("#step1").show();
+
+        }
+        var a = document.getElementById("value1");
+        var b = document.getElementById("value2");
+        var c = document.getElementById("value3");
+        var d = document.getElementById("value4");
+        var e = document.getElementById("value");
+        $(".step1").keydown(function(event){
+            if(event.keyCode == 13){
+                if (a.value != false) {
+                    $("#step2_1").show();
+                }else{ 
+                alert("Input the answer");
+                    $("#step2_1").hide();
+                }
+            }
+        }).focus();
+
+        $(".step2_1").keydown(function(event){
+                if(event.keyCode == 13){
+                    if (b.value != false) {
+                        $("#step2_2").show();
+                    }else{ 
+                    alert("Input the answer");
+                        $("#step2_2").hide();
+                    }
+                }
+        }).focus();
+
+        $(".step2_2").keydown(function(event){
+                if(event.keyCode == 13){
+                    if (c.value != false) {
+                        $("#step2_3").show();
+                    }else{ 
+                    alert("Input the answer");
+                        $("#step2_3").hide();
+                    }
+                }
+        }).focus();
+
+         $(".step2_3").keydown(function(event){
+                if(event.keyCode == 13){
+                    if (d.value != false) {
+                        $("#step3").show();
+                    }else{ 
+                    alert("Input the answer");
+                        $("#step3").hide();
+                    }
+                }
+        }).focus();
+
+         $(".step3").keydown(function(event){
+                if(event.keyCode == 13){
+                    if (e.value != false) {
+                        $("#error").show();
+                        $("#Congratlations").show();
+                    }else{ 
+                        alert("Input the answer");
+                        $("#error").hdie();
+                        $("#Congratlations").hide();
+                    }
+
+                   
+                  
+                    var p_con1 = numRand*numRand1;
+                    var jisu_A =jisu1+numRand2;
+                    var jisu_B =jisu2+ numRand3;
+                    if(a.value !=numRand+"*"+numRand1+"*A^"+jisu1+"*A^numRand2"+"*B^jisu2"+"*B^numRand3d"){
+                    	$("#step1Error").show();
+                    }
+                    if(b.value !=numRand*numRand1){
+                    	$("#step2Error1").show();
+                    }
+                    if(c.value !=".^"+jisu_A){
+                    	$("#step2Error2").show();
+                    }
+                    if(d.value !="B^"+jisu_B){
+                    	$("#step2Error3").show();
+                    }
+                    if(e.value!=p_con1+"*A^"+jisu_A+"*B^"+jisu_B){
+                    	$("#step3Error").show();
+                    }
+                }
+               
+        }).focus();
+    </script>
+</body>
+
+</html>
+
+
+           
+            
+
+           
+            
+            
+                
+            

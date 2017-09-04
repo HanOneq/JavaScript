@@ -1,0 +1,444 @@
+<html>
+<head>
+ <style type="text/css">
+            background: url(../imgs/background1.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+ </style>   
+    
+</head>
+<body>
+<div style="width: 1200px; height: 500px; margin: auto;margin-top:80px">
+
+<div>
+    <label style="font-weight: bold;color: #03345f; font-size: 21px;">randomDigits:</label>
+    <input type="text" name="randomDigits" id="randomDigits" style="border-bottom: rgba(98, 115, 95, 0) solid;text-align: center;background: rgba(0, 128, 0, 0.81);color: white; required autofocus value=" 4"="">
+    <input type="button" style="border-radius: 30px;" value="GEN" onclick="randomDigitsOnclick()">
+    <br>
+    <br>
+</div>
+
+
+
+
+<div id="examPane" style="display: none;">
+
+    <div style="float: left; width: 40%;">
+        <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+            <label style="font-weight: bold;color: #03345f; font-size: 21px;">Equation</label>&nbsp; &nbsp;
+            <label>
+                <table style="margin-left: 140px;margin-top: -40px;">
+                    <tbody><tr>
+                      <td style="text-shadow: 2px 2px 14px red;">ab</td>
+                      <td></td>
+                      <td style="text-shadow: 2px 2px 14px red;">cd</td>
+                  </tr>
+                  <tr>
+                      <td><hr></td>
+                      <td style="text-shadow: 2px 2px 14px red;">+</td>
+                      <td><hr></td>
+                  </tr>
+                  <tr>
+                      <td><label id="subject_number1_p" style="text-shadow: 2px 2px 14px red;"></label></td>
+                      <td></td>
+                      <td><label id="subject_number2_p" style="text-shadow: 2px 2px 14px red;"></label></td>
+                  </tr>
+
+              </tbody></table></label><br>
+                
+
+            </p>
+            <br>
+            <button style="border-radius: 30px;" onclick="startAnswer();">Start Answer</button>
+        </div>
+
+    </div>
+
+</div>
+<div id="examPane1" style="display: none;">
+    <div id="step1_1" style="display: none">
+    <p style="margin-left: 238px;margin-top: -259px;font-weight: bold;color: #03345f; font-size: 21px;">Step1:Find the least common denominator </p>
+    <input class="step1_1" name="continue1" id="value2" style="margin-left: 450px;" type="text" value="">
+    </div>
+    <div id="step2_2" style="display: none;">
+    <p style="margin-left: 238px;font-weight: bold;color: #03345f; font-size: 21px;">Step2:Rewrite fraction #1 with the new denominator</p>
+    <input class="step2_2" name="continue1" id="value3" style="margin-left: 450px;" type="text" value="">
+    </div>
+    <div id="step3_3" style="display: none;">
+    <p style="margin-left: 238px;font-weight: bold;color: #03345f; font-size: 21px;">Step3:Rewrite fraction #1 with the new denominator</p>
+    <input class="step3_3" name="continue1" id="value1" style="margin-left: 450px;" type="text" value=""></div>
+    <div id="step4_4" style="display: none;">
+    <p style="margin-left: 238px;font-weight: bold;color: #03345f; font-size: 21px;">Step4:Write out the new expression</p>
+    <input class="step4_4" name="continue1" id="value" style="margin-left: 450px;" type="text" value="">
+    </div>
+
+</div>
+<div id="error" style="display: none;    margin-left: 510px;margin-top: -594px;">
+    <h1 style="margin-left: 293px;text-shadow: 2px 2px 14px red;">Answered Flow</h1>
+    <label style="margin-left: 40px;font-weight: bold;color: #03345f; font-size: 21px;">step1</label>
+    <label style="margin-left: 36pxfont-weight: bold;color: #03345f; font-size: 21px;">Find the least common denominator </label>
+    <br>
+    <label id = "step1Error" style="margin-left:40px; color: red; display: none">error step1: you are wrong</label>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+        <label id="subject_number11_p" style="margin-left: 95px;font-weight: bold;color: green; font-size: 21px;"></label> ×
+        <label id="subject_number12_p" style="font-weight: bold;color: green; font-size: 21px;"></label>
+        <label id="" style="font-weight: bold;color: green; font-size: 21px;">=</label>
+        <label id="subject_number_p" style="font-weight: bold;color: green; font-size: 21px;"></label>
+
+        <label id="subject_number11_p1" style="margin-left: 100px;font-weight: bold;color: green; font-size: 21px;"></label> ×
+        <label id="subject_number12_p2" style="font-weight: bold;color: green; font-size: 21px;"></label>
+        <label id="" style="font-weight: bold;color: green; font-size: 21px;">=</label>
+        <label id="subject_number_p3" style="font-weight: bold;color: green; font-size: 21px;"></label><br><br>
+        <label style="margin-left: 95px;font-weight: bold;color: green; font-size: 21px;">Therefore the LCM for</label>
+        <label id="subject_number11_x1"></label>
+        <label>,</label>
+        <label id="subject_number12_x2"></label>
+        <label style="font-weight: bold;color: green; font-size: 21px;">is</label>
+        <label id="subject_number_x3"></label>
+    </p>
+    <br>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">Step2: Rewrite fraction #1 with the new denominator</label><br>
+    <label id = "step2Error" style="margin-left:235px; color: red; display: none ">error step2: you are wrong</label>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+
+        <label id="subject_number11_px" style="margin-left: 313px;"></label>
+        <label style="font-weight: bold;color: green; font-size: 21px;">becomes</label>
+        <label id="subject_number12_px"></label>
+    </p><br>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">Step3: Rewrite fraction #2 with the new denominator</label><br>
+    <label id = "step3Error" style="margin-left:235px; color: red; display: none ">error step3: you are wrong</label>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+
+        <label id="subject_number11_px1" style="margin-left: 313px;"></label>
+        <label style="font-weight: bold;color: green; font-size: 21px;">becomes</label>
+        <label id="subject_number12_px2"></label>
+    </p><br>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">Write out the new expression</label><br>
+    <label id = "step4Error" style="margin-left:235px; color: red; display: none ">error step4: you are wrong</label>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+
+        <label id="subject_number12_px3" style="margin-left: 313px;"></label>
+    </p>
+    <br>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">Add the fractions and write out the result </label>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+        <label id="subject_number33_px1" style="margin-left: 307px"></label>
+
+    </p>
+    <br>
+</div>
+
+<div id="Congratlations" style="display: none;margin-left: 1000;margin-top: -754px;">
+    <h1 style="margin-left: 235px;text-shadow: 2px 2px 14px red;">Correct Answer</h1>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">step1</label>
+    <label style="margin-left: 36pxfont-weight: bold;color: #03345f; font-size: 21px;">Find the least common denominator </label>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+        <label id="subject_number11_pc" style="margin-left: 295px;font-weight: bold;color: green; font-size: 21px;"></label> ×
+        <label id="subject_number12_pc" style="font-weight: bold;color: green; font-size: 21px;"></label>
+        <label id="" style="font-weight: bold;color: green; font-size: 21px;">=</label>
+        <label id="subject_number_pc" style="font-weight: bold;color: green; font-size: 21px;"></label>
+
+        <label id="subject_number11_p1c" style="margin-left: 100px;font-weight: bold;color: green; font-size: 21px;"></label> ×
+        <label id="subject_number12_p2c" style="font-weight: bold;color: green; font-size: 21px;"></label>
+        <label id="" style="font-weight: bold;color: green; font-size: 21px;">=</label>
+        <label id="subject_number_p3c" style="font-weight: bold;color: green; font-size: 21px;"></label><br><br>
+        <label style="margin-left: 295px;font-weight: bold;color: green; font-size: 21px;">Therefore the LCM for</label>
+        <label id="subject_number11_x1c"></label>
+        <label>,</label>
+        <label id="subject_number12_x2c"></label>
+        <label style="font-weight: bold;color: green; font-size: 21px;">is</label>
+        <label id="subject_number_x3c"></label>
+    </p>
+    <br>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">Step2: Rewrite fraction #1 with the new<br><label style="margin-left: 235px;">denominator</label> </label><br>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+
+        <label id="subject_number11_pxc" style="margin-left: 313px;"></label>
+        <label style="font-weight: bold;color: green; font-size: 21px;">becomes</label>
+        <label id="subject_number12_pxc"></label>
+    </p><br>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">Step3: Rewrite fraction #2 with the <label style="margin-left: 235px;">new denominator</label> </label><br>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+
+        <label id="subject_number11_px1c" style="margin-left: 313px;"></label>
+        <label style="font-weight: bold;color: green; font-size: 21px;">becomes</label>
+        <label id="subject_number12_px2c"></label>
+    </p><br>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">Write out the new expression</label><br>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+
+        <label id="subject_number12_px3c" style="margin-left: 313px;"></label>
+    </p>
+    <br>
+    <label style="margin-left: 235px;font-weight: bold;color: #03345f; font-size: 21px;">Add the fractions and write out the result </label>
+    <p style="font-size: 16pt; font-weight: bold; color: #0055BB;">
+        <label id="subject_number33_px1c" style="margin-left: 307px"></label>
+
+    </p>
+    <br>
+</div>
+
+
+<link href="../css/w3.css" rel="stylesheet">
+<script src="../js/jquery.js"></script>
+<script type="text/javascript">
+    var randomNumber1 = "";
+    var randomNumber2 = "";
+    var randomDigits = "";
+    var max_t = 0;
+    var min_t = 0;
+    var input1 = null;
+    var input2 = null;
+
+    var step_count = 0;
+    var step_words = ["ones", "tens", "hundreds", "thousands", "ten thousands", "hundred thousands", "millions"];
+    var max_digit = 0;
+    var carry_over = false;
+    var carry_elem;
+    var carr_over_var = [];
+    var carr_over_var2 = [];
+
+    var retry_attempt = 0;
+
+    function digits(digits) {
+        a = 1;
+        for (var i = 0; i < digits; i++) {
+            a *= 10;
+        }
+        return a;
+    }
+
+
+    function randomDigitsOnclick() {
+        carry_over = false;
+        randomDigits = $("#randomDigits").prop("value");
+        randomDigits = parseInt(randomDigits);
+        if (isNaN(randomDigits)) randomDigits = 1;
+        if (randomDigits > 7) randomDigits = 7;
+        $("#randomDigits").prop("value", randomDigits);
+        max_t = digits(randomDigits);
+        console.log(max_t);
+
+        randomNumber1 = Math.floor(Math.random() * max_t);
+        randomNumber2 = Math.floor(Math.random() * max_t);
+
+
+        $("#randomNumber1").prop("value", randomNumber1+"÷"+randomNumber2);
+        $("#randomNumber2").prop("value", "y");
+        $("#subject_number1_p").html(randomNumber1);
+        $("#subject_number2_p").html(randomNumber2);
+        $("#answerPane").html('<div id="lastDiv"></div>');
+        $("#examPane").show();
+        $("#lastDiv2").html("");
+        $("#value1").val("");
+        $("#value2").val("");
+        $("#value3").val("");
+        $("#value").val("");
+        $("#value1").prop("value", input1);
+        $("#value2").prop("value", input2);
+
+        $("#Congratlations").hide();
+        $("#error").hide();
+        $("#examPane1").hide();
+        $("#examPane2").hide();
+        $("#error1").hide();
+
+        $("#step1Error").hide();
+        $("#step2Error").hide();
+        $("#step3Error").hide();
+        $("#step4Error").hide(); 
+        $("#step1_1").hide(); 
+        $("#step2_2").hide();
+        $("#step3_3").hide();
+        $("#step4_4").hide(); 
+
+            step_count = 0;
+    }
+
+
+        function startAnswer() {
+        // if($(".answer_value").length == 0) generateAnswerStep();
+            $("#examPane1").show();
+            $("#step1_1").show();
+        }
+    var a = document.getElementById("value1");
+    var b = document.getElementById("value2");
+    var c = document.getElementById("value3");
+    var d = document.getElementById("value");
+    $(".step1_1").keydown(function(event){
+            if(event.keyCode == 13){
+                if (b.value != false) {
+                    $("#step2_2").show();
+                }else{ 
+                alert("Input the answer");
+                    $("#step2_2").hide();
+                }
+            }
+    }).focus();
+
+    $(".step2_2").keydown(function(event){
+            if(event.keyCode == 13){
+                if (c.value != false) {
+                    $("#step3_3").show();
+                }else{ 
+                alert("Input the answer");
+                    $("#step3_3").hide();
+                }
+            }
+    }).focus();
+
+    $(".step3_3").keydown(function(event){
+            if(event.keyCode == 13){
+                if (a.value != false) {
+                    $("#step4_4").show();
+                }else{ 
+                alert("Input the answer");
+                    $("#step4_4").hide();
+                }
+            }
+    }).focus();
+
+    $(".step4_4").keydown(function(event){
+        if(event.keyCode == 13){
+
+            if (d.value != false) {
+             check();
+            } else {
+                alert('Input the valid expression');
+                $("#Congratlations").hide();
+                $("#error").hide();
+            }
+            if(randomNumber1==0&&randomNumber2==0){
+            alert();
+            }
+        }
+    }).focus();
+
+
+function check() {
+    $("#Congratlations").show();
+    $("#error").show();
+
+    function highestCommonFactor(a, b) {
+        if (b == 0) {
+            return a;
+        }
+
+        return highestCommonFactor(b, (a % b));
+    }
+
+    var fraction1Denominator = randomNumber1;
+    var fraction2Denominator = randomNumber2;
+    var factor = highestCommonFactor(fraction1Denominator, fraction2Denominator);
+
+        if (factor > 1) { // There's a common factor greater than 1
+            if (fraction1Denominator > fraction2Denominator) {
+            // Find out how many times the factor goes into bigger denominator
+            var temp = fraction1Denominator / factor;
+
+            
+            fraction2Denominator = fraction2Denominator * temp;
+        } else {
+            // Find out how many times the factor goes into bigger denominator
+            var temp = fraction2Denominator / factor;
+
+            
+            fraction1Denominator = fraction1Denominator * temp;
+        }
+        } else { // There's no common factor greater than 1 so we need to multiple each fraction by each others denominators
+        // Temp values
+        
+        var fraction1DenominatorTemp = fraction1Denominator;
+        fraction1Denominator = fraction1Denominator * fraction2Denominator;
+        fraction2Denominator = fraction2Denominator * fraction1DenominatorTemp;
+    }
+    var e = document.getElementById("value");
+
+    console.log(e.value);
+
+    if (e.value != fraction1Denominator/randomNumber1+"ab/"+fraction1Denominator+"+"+fraction1Denominator/randomNumber2+"cd/"+fraction2Denominator) {
+
+        // $("#error").show();
+       
+        var randomNumber22 = randomNumber1 / randomNumber2;
+        $("#subject_number11_p").html(randomNumber1);
+        $("#subject_number12_p").html(fraction1Denominator/randomNumber1);
+        $("#subject_number_p").html(fraction1Denominator);
+
+        $("#subject_number11_pc").html(randomNumber1);
+        $("#subject_number12_pc").html(fraction1Denominator/randomNumber1);
+        $("#subject_number_pc").html(fraction1Denominator);
+
+        $("#subject_number11_p1").html(randomNumber2);
+        $("#subject_number12_p2").html(fraction1Denominator/randomNumber2);
+        $("#subject_number_p3").html(fraction1Denominator);
+
+        $("#subject_number11_p1c").html(randomNumber2);
+        $("#subject_number12_p2c").html(fraction1Denominator/randomNumber2);
+        $("#subject_number_p3c").html(fraction1Denominator);
+
+
+        $("#subject_number11_x1").html(randomNumber1);
+        $("#subject_number12_x2").html(randomNumber2);
+        $("#subject_number_x3").html(fraction1Denominator);
+
+        $("#subject_number11_x1c").html(randomNumber1);
+        $("#subject_number12_x2c").html(randomNumber2);
+        $("#subject_number_x3c").html(fraction1Denominator);
+
+
+        first_fraction1 = "ab/"+randomNumber1;
+        first_fraction = fraction1Denominator/randomNumber1+"ab/"+fraction1Denominator;
+
+        $("#subject_number11_px").html(first_fraction1);
+        $("#subject_number12_px").html(first_fraction);
+        $("#subject_number12_x2").html(randomNumber2);
+        $("#subject_number_x3").html(fraction1Denominator);
+
+        first_fraction2 = "cd/"+randomNumber2;
+        first_fraction21 = fraction1Denominator/randomNumber2+"cd/"+fraction1Denominator;
+        Rewrite_fraction = fraction1Denominator/randomNumber1+"ab/"+fraction1Denominator+"+"+fraction1Denominator/randomNumber2+"cd/"+fraction2Denominator;
+        add_fraction = "("+fraction1Denominator/randomNumber1+"ab"+"+"+fraction1Denominator/randomNumber2+"cd"+")/"+fraction2Denominator;
+
+        $("#subject_number11_px1").html(first_fraction2);
+        $("#subject_number12_px2").html(first_fraction21);
+        $("#subject_number12_px3").html(Rewrite_fraction);
+        $("#subject_number33_px1").html(add_fraction);
+
+        $("#subject_number11_px1c").html(first_fraction2);
+        $("#subject_number12_px2c").html(first_fraction21);
+        $("#subject_number12_px3c").html(Rewrite_fraction);
+        $("#subject_number33_px1c").html(add_fraction);
+
+    }
+    var aa = document.getElementById("value2");
+    var b = document.getElementById("value3");
+    var c = document.getElementById("value1");
+    var d = document.getElementById("value");
+
+    if(aa.value !=fraction1Denominator){
+         $("#step1Error").show();
+    }
+    if(b.value !=fraction1Denominator/randomNumber1+"ab/"+ fraction1Denominator){
+         $("#step2Error").show();
+    }
+    if(c.value !=fraction1Denominator/randomNumber2+"cd/"+ fraction1Denominator){
+         $("#step3Error").show();
+    }
+    if(d.value !=add_fraction){
+         $("#step4Error").show();
+    }
+
+}
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
